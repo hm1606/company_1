@@ -1,31 +1,95 @@
+// ================================
+// DECLARACIONES GLOBALES Y LOCALES
+// ================================
 const express = require('express');
-
-
 const bcrypt = require('bcrypt');
 const { connection } = require('../mysql/mysql');
-
-
 const app = express();
 
+//=======
+//GET ALL
+//=======
 app.get('/empresas', (req, res) => {
-    connection('SELECT * FROM Empresas', (err, results) => {
-        if (err) {
-            return res.status(400).json({
-                err,
-                message: 'No fue posible consultar.',
-            });
-        }
+    //======================
+    //DECLARAMOS LA CONSULTA
+    //======================
+    let query = `SELECT*FROM Empresas`;
 
-        if (!results[0]) {
+    //====================
+    //EJECUTAMOS EL SCRIPT
+    //====================
+    connection(query, (error, results) => {
+        //=======================================
+        //VALIDADMOS SI HUBO ERROR EN LA CONSULTA
+        //=======================================
+        if (error) {
             return res.status(400).json({
                 ok: false,
+                message: 'Error en la consulta.',
+                error
+            });
+        }
+        //================================
+        //VALIDAMOS SI LA TABLA ESTA VACIA
+        //================================
+        if (!results[0]) {
+            return res.status(204).json({
+                ok: true,
+                message: 'Aún no éxisten registros.'
+            });
+        }
+        //=================================
+        //GENERAMOS UN ARREGLO DE RESPUESTA
+        //=================================
+        res.status(200).json({
+            ok: true,
+            message: 'Consulta éxitosa.',
+            data: results
+        });
+    });
+});
+
+
+//=======
+//GET ONE
+//=======
+app.get('/empresas', (req, res) => {
+    //======================
+    //DECLARAMOS LA CONSULTA
+    //======================
+    let query = `SELECT*FROM Empresas`;
+
+    //====================
+    //EJECUTAMOS EL SCRIPT
+    //====================
+    connection(query, (error, results) => {
+        //=======================================
+        //VALIDADMOS SI HUBO ERROR EN LA CONSULTA
+        //=======================================
+        if (error) {
+            return res.status(400).json({
+                ok: false,
+                message: 'Error en la consulta.',
+                error
+            });
+        }
+        //================================
+        //VALIDAMOS SI LA TABLA ESTA VACIA
+        //================================
+        if (!results[0]) {
+            return res.status(204).json({
+                ok: true,
                 message: 'Aún no éxisten registros.'
             });
         }
 
-        res.status(200).send({
+        //=================================
+        //GENERAMOS UN ARREGLO DE RESPUESTA
+        //=================================
+        res.status(200).json({
             ok: true,
-            casos: results,
+            message: 'Consulta éxitosa.',
+            data: results
         });
     });
 });
