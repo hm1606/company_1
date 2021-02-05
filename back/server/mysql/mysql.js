@@ -5,7 +5,7 @@ let connection = (query, callback) => {
     host: 'localhost',
     user: 'company',
     password: '113435',
-    database: 'tickets'
+    database: 'company'
   });
 
   connection.connect();

@@ -104,7 +104,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `empresas` WRITE;
 /*!40000 ALTER TABLE `empresas` DISABLE KEYS */;
-INSERT INTO `empresas` VALUES (1,'HM STUDIOS',NULL,NULL,'Nicolas Regules No. 302 Col. Mexico',1);
+INSERT INTO `empresas` VALUES (1,'HM STUDIOS',NULL,NULL,'Nicolas Regules No. 302 Col. Mexico',NULL,1);
 /*!40000 ALTER TABLE `empresas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,7 +219,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `servicios` WRITE;
 /*!40000 ALTER TABLE `servicios` DISABLE KEYS */;
-INSERT INTO `servicios` VALUES (1,'Grabacion RAP','Servicio de grabar una cancion, mezclarla y masterizarla',350,2,1,1);
+INSERT INTO `servicios` VALUES (1,'Grabacion RAP','Servicio de grabar una cancion, mezclarla y masterizarla',350,2,1,1,NULL);
 /*!40000 ALTER TABLE `servicios` ENABLE KEYS */;
 UNLOCK TABLES;
 
