@@ -228,7 +228,7 @@ app.post('/usuarios/clientes', (req, res) => {
             if (!resultsAP[0]) {
                 let queryADD = `INSERT INTO Clientes (email,status) VALUES('${body.persona}','1')`;
                 connection(queryADD, (errorADD, resultsADD) => {
-                    
+
                     console.log(queryADD);
 
                     if (errorADD) {
